@@ -22,7 +22,7 @@ class App extends React.Component {
     this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
-
+        
         userRef.onSnapshot(snapShot => {
           this.setState({
             currentUser: {
@@ -34,13 +34,15 @@ class App extends React.Component {
       }
       this.setState({currentUser: userAuth});
     });
+    
   }
-
+  
   componentWillUnmount(){
     this.unsbscribeFromAuth();
   }
-
+  
   render(){
+    
     return (
       <div>
         <Header currentUser={ this.state.currentUser }/>
